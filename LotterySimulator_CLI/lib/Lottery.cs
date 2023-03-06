@@ -19,6 +19,7 @@ namespace LotteryLib
             get { return bonusTable; }
         }
     }
+
     abstract class Prize
     {
         protected int id = 0;
@@ -35,4 +36,5 @@ namespace LotteryLib
             this.rand = rand;
         }
     }
+
 }

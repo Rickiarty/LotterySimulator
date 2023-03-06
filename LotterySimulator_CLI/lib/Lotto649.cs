@@ -22,7 +22,7 @@ namespace LotteryLib
             { 0, "未中獎"},
             { 1, "頭獎"},
             { 2, "貳獎"},
-            { 3, "叁獎"},
+            { 3, "參獎"},
             { 4, "肆獎"},
             { 5, "伍獎"},
             { 6, "陸獎"},
@@ -84,7 +84,7 @@ namespace LotteryLib
         {
             for (int i = 0; i < this.numbers.Length;)
             {
-                var temp = this.rand.Next(1, 50); // 1~50 
+                var temp = this.rand.Next(1, 50); // 1~49 
                 if (!this.numbers.Contains(temp))
                 {
                     this.numbers[i] = temp;
@@ -105,7 +105,7 @@ namespace LotteryLib
 
         public Lotto649(Random rand) : base(rand)
         {
-            this.specialNumber = this.rand.Next(1, 50); // 1~50 
+            this.specialNumber = this.rand.Next(1, 50); // 1~49 
         }
 
         public PrizeLotto649 MatchPrize(Lotto649Ticket ticket)
