@@ -105,7 +105,12 @@ namespace LotteryLib
 
         public Lotto649(Random rand) : base(rand)
         {
-            this.specialNumber = this.rand.Next(1, 50); // 1~49 
+            var temp = this.rand.Next(1, 50); // 1~49 
+            while (this.numbers.Contains(temp)) 
+            {
+                temp = this.rand.Next(1, 50); // 1~49 
+            }
+            this.specialNumber = temp;
         }
 
         public PrizeLotto649 MatchPrize(Lotto649Ticket ticket)
@@ -119,37 +124,52 @@ namespace LotteryLib
                 }
             }
             PrizeLotto649 prize = null;
-            if (!ticket.Numbers.Contains(this.specialNumber))
+            switch (c1)
             {
-                switch (c1)
-                {
-                    case 6:
-                        prize = new PrizeLotto649(1); break;
-                    case 5:
-                        prize = new PrizeLotto649(3); break;
-                    case 4:
-                        prize = new PrizeLotto649(5); break;
-                    case 3:
-                        prize = new PrizeLotto649(8); break;
-                    default:
-                        prize = new PrizeLotto649(0); break;
-                }
-            }
-            else
-            {
-                switch (c1)
-                {
-                    case 5:
-                        prize = new PrizeLotto649(2); break;
-                    case 4:
-                        prize = new PrizeLotto649(4); break;
-                    case 3:
-                        prize = new PrizeLotto649(6); break;
-                    case 2:
-                        prize = new PrizeLotto649(7); break;
-                    default:
-                        prize = new PrizeLotto649(0); break;
-                }
+                case 6:
+                    prize = new PrizeLotto649(1); break;
+                case 5:
+                    if (ticket.Numbers.Contains(this.specialNumber))
+                    {
+                        prize = new PrizeLotto649(2);
+                    }
+                    else
+                    {
+                        prize = new PrizeLotto649(3);
+                    }
+                    break;
+                case 4:
+                    if (ticket.Numbers.Contains(this.specialNumber))
+                    {
+                        prize = new PrizeLotto649(4);
+                    }
+                    else
+                    {
+                        prize = new PrizeLotto649(5);
+                    }
+                    break;
+                case 3:
+                    if (ticket.Numbers.Contains(this.specialNumber))
+                    {
+                        prize = new PrizeLotto649(6);
+                    }
+                    else
+                    {
+                        prize = new PrizeLotto649(8);
+                    }
+                    break;
+                case 2:
+                    if (ticket.Numbers.Contains(this.specialNumber))
+                    {
+                        prize = new PrizeLotto649(7);
+                    }
+                    else
+                    {
+                        prize = new PrizeLotto649(0);
+                    }
+                    break;
+                default:
+                    prize = new PrizeLotto649(0); break;
             }
             return prize;
         }
