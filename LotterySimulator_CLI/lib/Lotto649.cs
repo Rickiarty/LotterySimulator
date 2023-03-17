@@ -1,6 +1,7 @@
 ﻿// Lotto649.cs
 // 威力彩.cs
 
+using System;
 using System.Text;
 
 namespace LotteryLib
@@ -93,6 +94,35 @@ namespace LotteryLib
             }
             Array.Sort(this.numbers);
         }
+        public Lottery649(Random rand, int[] nums) : base(rand)
+        {
+            if (nums.Length != 6) { throw new ArgumentException("number of array parameter 'nums' is not valid", nameof(nums)); }
+            for (int i = 0; i < this.numbers.Length; i += 1)
+            {
+                if (nums[i] > 49 || nums[i] < 1)
+                {
+                    throw new ArgumentException("each value of array parameter 'nums' must be between 1 and 49", nameof(nums));
+                }
+                this.numbers[i] = nums[i];
+            }
+            if (this.IsDuplicated()) { throw new ArgumentException("duplicated values in array parameter 'nums'", nameof(nums)); }
+            Array.Sort(this.numbers);
+        }
+
+        protected bool IsDuplicated()
+        {
+            for (int i=1; i<this.numbers.Length; i+=1) 
+            {
+                for (int j=0; j<i; j+=1) 
+                {
+                    if (this.numbers[i] == this.numbers[j]) 
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 
     class Lotto649 : Lottery649
@@ -105,8 +135,17 @@ namespace LotteryLib
 
         public Lotto649(Random rand) : base(rand)
         {
+            this.GenerateSpecialNumber();
+        }
+        public Lotto649(Random rand, int[] nums) : base(rand, nums)
+        {
+            this.GenerateSpecialNumber();
+        }
+
+        protected void GenerateSpecialNumber()
+        {
             var temp = this.rand.Next(1, 50); // 1~49 
-            while (this.numbers.Contains(temp)) 
+            while (this.numbers.Contains(temp))
             {
                 temp = this.rand.Next(1, 50); // 1~49 
             }
@@ -189,8 +228,11 @@ namespace LotteryLib
 
     class Lotto649Ticket : Lottery649
     {
-
         public Lotto649Ticket(Random rand) : base(rand)
+        {
+            ;
+        }
+        public Lotto649Ticket(Random rand, int[] nums) : base(rand, nums)
         {
             ;
         }

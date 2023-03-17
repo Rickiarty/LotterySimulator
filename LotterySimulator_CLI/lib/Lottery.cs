@@ -33,7 +33,14 @@ namespace LotteryLib
 
         public Lottery(Random rand)
         {
-            this.rand = rand;
+            if (rand == null) 
+            { 
+                this.rand = new Random(); 
+            }
+            else
+            {
+                this.rand = rand;
+            }
         }
     }
 

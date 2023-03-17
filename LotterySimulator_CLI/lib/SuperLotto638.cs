@@ -100,6 +100,22 @@ namespace LotteryLib
             Array.Sort(this.area1);
             this.area2 = this.rand.Next(1, 9); // 1~8 
         }
+        public SuperLotto638(int[] area1, int area2) : base(new Random())
+        {
+            if (area1.Length != 6) { throw new ArgumentException("number of array parameter 'area1' is not valid", nameof(area1)); }
+            if (area2 > 8 || area2 < 1) { throw new ArgumentException("value of parameter 'area2' must be between 1 and 8", nameof(area2)); }
+            for (int i = 0; i < this.area1.Length; i+=1)
+            {
+                if (area1[i] > 38 || area1[i] < 1)
+                {
+                    throw new ArgumentException("each value of array parameter 'area1' must be between 1 and 38", nameof(area1));
+                }
+                this.area1[i] = area1[i];
+            }
+            if (this.IsDuplicated()) { throw new ArgumentException("duplicated values in array parameter 'area1'", nameof(area1)); }
+            Array.Sort(this.area1);
+            this.area2 = area2;
+        }
 
         public PrizeSuperLotto638 MatchPrize(SuperLotto638 ticket) 
         {
@@ -160,6 +176,21 @@ namespace LotteryLib
             }
             sb.Append("], \"第二區\": " + this.area2 + ", }");
             return sb.ToString();
+        }
+
+        protected bool IsDuplicated()
+        {
+            for (int i = 1; i < this.area1.Length; i += 1)
+            {
+                for (int j = 0; j < i; j += 1)
+                {
+                    if (this.area1[i] == this.area1[j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
     }

@@ -4,7 +4,7 @@ using LotteryLib;
 DateTime start_time = DateTime.Now; // 程式開始執行時間(大約) 
 
 var rand = new Random(); // 亂數產生器 
-var ticketsNum = 20000;
+var ticketsNum = 2000000;
 
 // 大樂透 
 Lotto649 l649 = new Lotto649(rand);
@@ -12,6 +12,10 @@ Lotto649Ticket[] l649ticket = new Lotto649Ticket[ticketsNum];
 for (int i = 0; i < l649ticket.Length; i += 1)
 {
     l649ticket[i] = new Lotto649Ticket(rand);
+    if (i == l649ticket.Length-1) 
+    {
+        l649ticket[i] = new Lotto649Ticket(rand, new int[6] { 1, 3, 5, 7, 9, 49 });
+    }
 }
 var count_l649 = new int[9];
 foreach (var ticket in l649ticket)
@@ -35,6 +39,10 @@ SuperLotto638[] sl638ticket = new SuperLotto638[ticketsNum];
 for (int i=0; i<sl638ticket.Length; i+=1) 
 {
     sl638ticket[i] = new SuperLotto638(rand);
+    if (i == sl638ticket.Length - 1)
+    {
+        sl638ticket[i] = new SuperLotto638(new int[6] { 2, 4, 6, 8, 10, 38 }, 6);
+    }
 }
 
 var count_sl638 = new int[11];
