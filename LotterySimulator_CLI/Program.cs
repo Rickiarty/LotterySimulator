@@ -4,7 +4,21 @@ using LotteryLib;
 DateTime start_time = DateTime.Now; // 程式開始執行時間(大約) 
 
 var rand = new Random(); // 亂數產生器 
-var ticketsNum = 2000000;
+var ticketsNum = 200; // default value 
+if (args.Length > 0) 
+{
+    if (int.TryParse(args[0], out ticketsNum)) 
+    {
+        if (ticketsNum <= 0)
+        {
+            throw new ArgumentException("Argument error: the 1st argument should be positive.", nameof(args));
+        }
+    }
+    else
+    {
+        throw new ArgumentException("Argument error: the 1st argument should be a integer.", nameof(args));
+    }
+}
 
 // 大樂透 
 Lotto649 l649 = new Lotto649(rand);
