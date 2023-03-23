@@ -39,14 +39,14 @@ namespace LotteryLib
             if (id > 4 || id < 0)
             {
                 this.id = 0;
-                this.name = TableSuperLotto638.NameTable[0];
-                this.ntd = TableSuperLotto638.BonusTable[0];
+                this.name = TableDailyCash539.NameTable[0];
+                this.ntd = TableDailyCash539.BonusTable[0];
             }
             else
             {
                 this.id = id;
-                this.name = TableSuperLotto638.NameTable[id];
-                this.ntd = TableSuperLotto638.BonusTable[id];
+                this.name = TableDailyCash539.NameTable[id];
+                this.ntd = TableDailyCash539.BonusTable[id];
             }
         }
         public int Id
@@ -86,16 +86,16 @@ namespace LotteryLib
         }
         public DailyCash539(int[] num) : base(new Random())
         {
-            if (num.Length != 5) { throw new ArgumentException("number of array parameter 'area1' is not valid", nameof(num)); }
+            if (num.Length != 5) { throw new ArgumentException("number of array parameter 'num' is not valid", nameof(num)); }
             for (int i = 0; i < this.number.Length; i += 1)
             {
                 if (num[i] > 39 || num[i] < 1)
                 {
-                    throw new ArgumentException("each value of array parameter 'area1' must be between 1 and 39", nameof(num));
+                    throw new ArgumentException("each value of array parameter 'num' must be between 1 and 39", nameof(num));
                 }
                 this.number[i] = num[i];
             }
-            if (this.IsDuplicated()) { throw new ArgumentException("duplicated values in array parameter 'area1'", nameof(num)); }
+            if (this.IsDuplicated()) { throw new ArgumentException("duplicated values in array parameter 'num'", nameof(num)); }
             Array.Sort(this.number);
         }
 
@@ -109,7 +109,8 @@ namespace LotteryLib
                     c1 += 1;
                 }
             }
-            PrizeDailyCash539 prize = null; switch (c1)
+            PrizeDailyCash539 prize = null; 
+            switch (c1)
             {
                 case 5:
                     prize = new PrizeDailyCash539(1); break;

@@ -99,7 +99,7 @@ Console.WriteLine();
 Console.WriteLine($"本期 今彩539 獎號: {dc539.Show()}\n");
 for (int i = 0; i < count_dc539.Length; i += 1)
 {
-    Console.WriteLine($"{TableSuperLotto638.NameTable[i]}: {count_dc539[i]}/{ticketsNum} ({count_dc539[i] * 100.0 / ticketsNum} %)");
+    Console.WriteLine($"{TableDailyCash539.NameTable[i]}: {count_dc539[i]}/{ticketsNum} ({count_dc539[i] * 100.0 / ticketsNum} %)");
 }
 
 Console.WriteLine("\n###########################\n");
