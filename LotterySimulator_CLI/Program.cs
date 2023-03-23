@@ -1,5 +1,6 @@
 ﻿//using System.Threading;
 using LotteryLib;
+using StrategiesToLottery;
 
 DateTime start_time = DateTime.Now; // 程式開始執行時間(大約) 
 
@@ -99,6 +100,44 @@ Console.WriteLine($"本期 今彩539 獎號: {dc539.Show()}\n");
 for (int i = 0; i < count_dc539.Length; i += 1)
 {
     Console.WriteLine($"{TableSuperLotto638.NameTable[i]}: {count_dc539[i]}/{ticketsNum} ({count_dc539[i] * 100.0 / ticketsNum} %)");
+}
+
+Console.WriteLine("\n###########################\n");
+
+// 官方app第二區包牌法 
+Console.WriteLine("[官方app第二區包牌法 to 威力彩]");
+var sl638ticket1 = StrategySuperLotto638.Strategy["CommonStrategy1"](rand);
+var count1_sl638 = new int[11];
+foreach (var ticket in sl638ticket1)
+{
+    var prize = sl638.MatchPrize(ticket);
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    count1_sl638[prize.Id] += 1;
+}
+Console.WriteLine();
+Console.WriteLine($"本期 威力彩 獎號: {sl638.Show()}\n");
+for (int i = 0; i < count1_sl638.Length; i += 1)
+{
+    Console.WriteLine($"{TableSuperLotto638.NameTable[i]}: {count1_sl638[i]}/{sl638ticket1.Length} ({count1_sl638[i] * 100.0 / sl638ticket1.Length} %)");
+}
+
+Console.WriteLine("\n###########################\n");
+
+// 彩券行老闆包牌法 
+Console.WriteLine("[彩券行老闆包牌法 to 威力彩]");
+var sl638ticket2 = StrategySuperLotto638.Strategy["CommonStrategy2"](rand);
+var count2_sl638 = new int[11];
+foreach (var ticket in sl638ticket2)
+{
+    var prize = sl638.MatchPrize(ticket);
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    count2_sl638[prize.Id] += 1;
+}
+Console.WriteLine();
+Console.WriteLine($"本期 威力彩 獎號: {sl638.Show()}\n");
+for (int i = 0; i < count2_sl638.Length; i += 1)
+{
+    Console.WriteLine($"{TableSuperLotto638.NameTable[i]}: {count2_sl638[i]}/{sl638ticket2.Length} ({count2_sl638[i] * 100.0 / sl638ticket2.Length} %)");
 }
 
 Console.WriteLine("\n###########################\n");
