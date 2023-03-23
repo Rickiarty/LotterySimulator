@@ -1,7 +1,6 @@
 ﻿// Lotto649.cs
 // 威力彩.cs
 
-using System;
 using System.Text;
 
 namespace LotteryLib
@@ -46,7 +45,7 @@ namespace LotteryLib
         protected new double ntd = 0;
         public PrizeLotto649(int id)
         {
-            if (id > 10 || id < 0)
+            if (id > 8 || id < 0)
             {
                 this.id = 0;
                 this.name = TableLotto649.NameTable[0];

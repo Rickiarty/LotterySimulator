@@ -16,7 +16,7 @@ if (args.Length > 0)
     }
     else
     {
-        throw new ArgumentException("Argument error: the 1st argument should be a integer.", nameof(args));
+        throw new ArgumentException("Argument error: the 1st argument should be an integer.", nameof(args));
     }
 }
 
@@ -75,9 +75,37 @@ for (int i = 0; i < count_sl638.Length; i += 1)
 
 Console.WriteLine("\n###########################\n");
 
+// 今彩539  
+DailyCash539 dc539 = new DailyCash539(rand);
+DailyCash539[] dc539ticket = new DailyCash539[ticketsNum];
+for (int i = 0; i < dc539ticket.Length; i += 1)
+{
+    dc539ticket[i] = new DailyCash539(rand);
+    if (i == dc539ticket.Length - 1)
+    {
+        dc539ticket[i] = new DailyCash539(new int[5] { 4, 7, 10, 13, 39 });
+    }
+}
+
+var count_dc539 = new int[5];
+foreach (var ticket in dc539ticket)
+{
+    var prize = dc539.MatchPrize(ticket);
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    count_dc539[prize.Id] += 1;
+}
+Console.WriteLine();
+Console.WriteLine($"本期 今彩539 獎號: {dc539.Show()}\n");
+for (int i = 0; i < count_dc539.Length; i += 1)
+{
+    Console.WriteLine($"{TableSuperLotto638.NameTable[i]}: {count_dc539[i]}/{ticketsNum} ({count_dc539[i] * 100.0 / ticketsNum} %)");
+}
+
+Console.WriteLine("\n###########################\n");
+
 //Thread.Sleep(3000); // in milli-second 
 
 DateTime end_time = DateTime.Now; // 程式結束執行時間(大約) 
 Console.WriteLine($"started at {start_time}");
 Console.WriteLine($"finished at {end_time}");
-Console.WriteLine($"time delta = {end_time - start_time} sec");
+Console.WriteLine($"time delta = {end_time - start_time}");
