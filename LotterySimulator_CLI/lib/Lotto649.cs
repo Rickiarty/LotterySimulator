@@ -95,7 +95,7 @@ namespace LotteryLib
         }
         public Lottery649(Random rand, int[] nums) : base(rand)
         {
-            if (nums.Length != 6) { throw new ArgumentException("number of array parameter 'nums' is not valid", nameof(nums)); }
+            if (nums.Length != 6) { throw new ArgumentException("length of array parameter 'nums' is not valid", nameof(nums)); }
             for (int i = 0; i < this.numbers.Length; i += 1)
             {
                 if (nums[i] > 49 || nums[i] < 1)

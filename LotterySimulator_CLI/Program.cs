@@ -104,6 +104,34 @@ for (int i = 0; i < count_dc539.Length; i += 1)
 
 Console.WriteLine("\n###########################\n");
 
+// 雙贏彩 
+Lotto1224 l1224 = new Lotto1224(rand);
+Lotto1224[] l1224ticket = new Lotto1224[ticketsNum];
+for (int i = 0; i < l1224ticket.Length; i += 1)
+{
+    l1224ticket[i] = new Lotto1224(rand);
+    if (i == l1224ticket.Length - 1)
+    {
+        l1224ticket[i] = new Lotto1224(new int[12] { 1, 4, 5, 8, 9, 12, 13, 16, 17, 20, 21, 24 });
+    }
+}
+
+var count_l1224 = new int[5];
+foreach (var ticket in l1224ticket)
+{
+    var prize = l1224.MatchPrize(ticket);
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    count_l1224[prize.Id] += 1;
+}
+Console.WriteLine();
+Console.WriteLine($"本期 雙贏彩 獎號: {l1224.Show()}\n");
+for (int i = 0; i < count_l1224.Length; i += 1)
+{
+    Console.WriteLine($"{TableLotto1224.NameTable[i]}: {count_l1224[i]}/{ticketsNum} ({count_l1224[i] * 100.0 / ticketsNum} %)");
+}
+
+Console.WriteLine("\n###########################\n");
+
 // 官方app第二區包牌法 
 Console.WriteLine("[官方app第二區包牌法 to 威力彩]");
 var sl638ticket1 = StrategySuperLotto638.Strategy["CommonStrategy1"](rand);

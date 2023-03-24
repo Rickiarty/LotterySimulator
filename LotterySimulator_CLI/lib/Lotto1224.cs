@@ -1,18 +1,18 @@
-﻿// DailyCash539.cs
-// 今彩539.cs
+﻿// Lotto1224.cs
+// 雙贏彩.cs
 
 using System.Text;
 
 namespace LotteryLib
 {
-    class TableDailyCash539 : Table
+    class TableLotto1224 : Table
     {
         protected static new Dictionary<int, int> bonusTable = new Dictionary<int, int>() {
-            { 0,       0},
-            { 1, 8000000},
-            { 2,   20000},
-            { 3,     300},
-            { 4,      50},
+            { 0,        0},
+            { 1, 15000000},
+            { 2,   100000},
+            { 3,      500},
+            { 4,      100},
         };
         protected static new Dictionary<int, string> nameTable = new Dictionary<int, string>() {
             { 0, "未中獎"},
@@ -32,21 +32,21 @@ namespace LotteryLib
         }
     }
 
-    class PrizeDailyCash539 : Prize
+    class PrizeLotto1224 : Prize
     {
-        public PrizeDailyCash539(int id)
+        public PrizeLotto1224(int id)
         {
             if (id > 4 || id < 0)
             {
                 this.id = 0;
-                this.name = TableDailyCash539.NameTable[0];
-                this.ntd = TableDailyCash539.BonusTable[0];
+                this.name = TableLotto1224.NameTable[0];
+                this.ntd = TableLotto1224.BonusTable[0];
             }
             else
             {
                 this.id = id;
-                this.name = TableDailyCash539.NameTable[id];
-                this.ntd = TableDailyCash539.BonusTable[id];
+                this.name = TableLotto1224.NameTable[id];
+                this.ntd = TableLotto1224.BonusTable[id];
             }
         }
         public int Id
@@ -63,35 +63,35 @@ namespace LotteryLib
         }
     }
 
-    class DailyCash539 : Lottery
+    class Lotto1224 : Lottery
     {
-        protected int[] number = new int[5];
+        protected int[] number = new int[12];
         public int[] Number
         {
             get { return this.number; }
         }
 
-        public DailyCash539(Random rand) : base(rand)
+        public Lotto1224(Random rand) : base(rand)
         {
             for (int i = 0; i < this.number.Length;)
             {
-                var temp = this.rand.Next(1, 40); // 1~39 
+                var temp = this.rand.Next(1, 25); // 1~24 
                 if (!this.number.Contains(temp))
                 {
                     this.number[i] = temp;
                     i += 1;
                 }
             }
-            Array.Sort(this.number); 
+            Array.Sort(this.number);
         }
-        public DailyCash539(int[] num) : base(new Random())
+        public Lotto1224(int[] num) : base(new Random())
         {
-            if (num.Length != 5) { throw new ArgumentException("length of array parameter 'num' is not valid", nameof(num)); }
+            if (num.Length != 12) { throw new ArgumentException("length of array parameter 'num' is not valid", nameof(num)); }
             for (int i = 0; i < this.number.Length; i += 1)
             {
-                if (num[i] > 39 || num[i] < 1)
+                if (num[i] > 24 || num[i] < 1)
                 {
-                    throw new ArgumentException("each value of array parameter 'num' must be between 1 and 39", nameof(num));
+                    throw new ArgumentException("each value of array parameter 'num' must be between 1 and 24", nameof(num));
                 }
                 this.number[i] = num[i];
             }
@@ -99,37 +99,38 @@ namespace LotteryLib
             Array.Sort(this.number);
         }
 
-        public PrizeDailyCash539 MatchPrize(DailyCash539 ticket)
+        public PrizeLotto1224 MatchPrize(Lotto1224 ticket)
         {
-            int c1 = 0;
-            for (int i = 0; i < this.number.Length; i++)
+            PrizeLotto1224 prize = null;
+            IEnumerable<int> intersection = this.number.Intersect(ticket.Number);
+            int count = intersection.Count();
+            if (count == 12 || count == 0)
             {
-                if (ticket.Number.Contains(this.Number[i]))
-                {
-                    c1 += 1;
-                }
+                prize = new PrizeLotto1224(1);
             }
-            PrizeDailyCash539 prize = null; 
-            switch (c1)
+            else if (count == 11 || count == 1)
             {
-                case 5:
-                    prize = new PrizeDailyCash539(1); break;
-                case 4:
-                    prize = new PrizeDailyCash539(2); break;
-                case 3:
-                    prize = new PrizeDailyCash539(3); break;
-                case 2:
-                    prize = new PrizeDailyCash539(4); break;
-                default:
-                    prize = new PrizeDailyCash539(0); break;
+                prize = new PrizeLotto1224(2);
+            }
+            else if (count == 10 || count == 2)
+            {
+                prize = new PrizeLotto1224(3);
+            }
+            else if (count == 9 || count == 3)
+            {
+                prize = new PrizeLotto1224(4);
+            }
+            else
+            {
+                prize = new PrizeLotto1224(0);
             }
             return prize;
         }
 
         public string Show()
         {
-            StringBuilder sb = new StringBuilder("{ \"今彩539\": [ ");
-            for (int i = 0; i < this.number.Length; i++)
+            StringBuilder sb = new StringBuilder("{ \"雙贏彩\": [ ");
+            for (int i = 0; i < this.number.Length; i+=1)
             {
                 sb.Append($"{this.number[i]}, ");
             }
@@ -153,4 +154,5 @@ namespace LotteryLib
         }
 
     }
+
 }

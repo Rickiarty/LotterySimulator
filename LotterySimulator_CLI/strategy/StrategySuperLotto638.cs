@@ -32,7 +32,7 @@ namespace StrategiesToLottery
         }
 
         public static SuperLotto638[] CommonStrategy1(Random rand)
-        { /* a.k.a 官方app第二區包牌法 */
+        { /* a.k.a. 官方app第二區包牌法 */
             if (rand == null) { rand = new Random(); }
             SuperLotto638[] ticket = new SuperLotto638[8];
             for (int i=0; i<ticket.Length; i+=1)
@@ -44,7 +44,7 @@ namespace StrategiesToLottery
         }
 
         public static SuperLotto638[] CommonStrategy2(Random rand)
-        { /* a.k.a 彩券行老闆包牌法 */
+        { /* a.k.a. 彩券行老闆包牌法 */
             if (rand == null) { rand = new Random(); }
             SuperLotto638[] ticket = new SuperLotto638[8];
             int[] area1 = StrategySuperLotto638.Generate6DistinctNumbers(rand);

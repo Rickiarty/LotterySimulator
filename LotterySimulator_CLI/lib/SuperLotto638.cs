@@ -102,7 +102,7 @@ namespace LotteryLib
         }
         public SuperLotto638(int[] area1, int area2) : base(new Random())
         {
-            if (area1.Length != 6) { throw new ArgumentException("number of array parameter 'area1' is not valid", nameof(area1)); }
+            if (area1.Length != 6) { throw new ArgumentException("length of array parameter 'area1' is not valid", nameof(area1)); }
             if (area2 > 8 || area2 < 1) { throw new ArgumentException("value of parameter 'area2' must be between 1 and 8", nameof(area2)); }
             for (int i = 0; i < this.area1.Length; i+=1)
             {
