@@ -36,7 +36,7 @@ var count_l649 = new int[9];
 foreach (var ticket in l649ticket)
 {
     var prize = l649.MatchPrize(ticket);
-    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩券內容: {ticket.Show()}\n");
     count_l649[prize.Id] += 1;
 }
 Console.WriteLine();
@@ -64,7 +64,7 @@ var count_sl638 = new int[11];
 foreach (var ticket in sl638ticket)
 {
     var prize = sl638.MatchPrize(ticket);
-    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩券內容: {ticket.Show()}\n");
     count_sl638[prize.Id] += 1;
 }
 Console.WriteLine();
@@ -92,7 +92,7 @@ var count_dc539 = new int[5];
 foreach (var ticket in dc539ticket)
 {
     var prize = dc539.MatchPrize(ticket);
-    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩券內容: {ticket.Show()}\n");
     count_dc539[prize.Id] += 1;
 }
 Console.WriteLine();
@@ -120,7 +120,7 @@ var count_l1224 = new int[5];
 foreach (var ticket in l1224ticket)
 {
     var prize = l1224.MatchPrize(ticket);
-    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩券內容: {ticket.Show()}\n");
     count_l1224[prize.Id] += 1;
 }
 Console.WriteLine();
@@ -139,7 +139,7 @@ var count1_sl638 = new int[11];
 foreach (var ticket in sl638ticket1)
 {
     var prize = sl638.MatchPrize(ticket);
-    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩券內容: {ticket.Show()}\n");
     count1_sl638[prize.Id] += 1;
 }
 Console.WriteLine();
@@ -158,7 +158,7 @@ var count2_sl638 = new int[11];
 foreach (var ticket in sl638ticket2)
 {
     var prize = sl638.MatchPrize(ticket);
-    Console.Write($"{prize.Name}: {prize.NTD}, 彩卷內容: {ticket.Show()}\n");
+    Console.Write($"{prize.Name}: {prize.NTD}, 彩券內容: {ticket.Show()}\n");
     count2_sl638[prize.Id] += 1;
 }
 Console.WriteLine();
@@ -173,6 +173,6 @@ Console.WriteLine("\n###########################\n");
 //Thread.Sleep(3000); // in milli-second 
 
 DateTime end_time = DateTime.Now; // 程式結束執行時間(大約) 
-Console.WriteLine($"started at {start_time}");
+Console.WriteLine($" started at {start_time}");
 Console.WriteLine($"finished at {end_time}");
-Console.WriteLine($"time delta = {end_time - start_time}");
+Console.WriteLine($"         time delta = {end_time - start_time}");
