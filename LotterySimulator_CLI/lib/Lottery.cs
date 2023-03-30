@@ -42,6 +42,21 @@ namespace LotteryLib
                 this.rand = rand;
             }
         }
+
+        protected bool IsDuplicated(int[] intArr)
+        {
+            for (int i = 1; i < intArr.Length; i += 1)
+            {
+                for (int j = 0; j < i; j += 1)
+                {
+                    if (intArr[i] == intArr[j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 
 }
