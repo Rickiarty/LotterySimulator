@@ -184,8 +184,6 @@ namespace LotterySimulator_WebAPI
 
             sb.Append("\n###########################\n\n");
 
-            //Thread.Sleep(3000); // in milli-second 
-
             DateTime end_time = DateTime.Now; // 程式結束執行時間(大約) 
             sb.Append($" started at {start_time} (time on server)\n");
             sb.Append($"finished at {end_time} (time on server)\n");
