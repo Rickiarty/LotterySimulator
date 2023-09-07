@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LotterySimulator_DLL\LotterySimulator_DLL.csproj" />
+  </ItemGroup>
+
 </Project>

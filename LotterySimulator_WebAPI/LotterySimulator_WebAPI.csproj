@@ -14,10 +14,4 @@
     <ProjectReference Include="..\LotterySimulator_DLL\LotterySimulator_DLL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="LotterySimulator_DLL">
-      <HintPath>..\LotterySimulator_DLL\bin\Release\net6.0\LotterySimulator_DLL.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
